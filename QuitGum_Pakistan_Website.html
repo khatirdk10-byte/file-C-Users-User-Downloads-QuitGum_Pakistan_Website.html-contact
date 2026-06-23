@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuitGum Pakistan — Quit Smoking, Start Living</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #3B6D11; --green-light: #EAF3DE; --green-mid: #639922;
+    --teal: #0F6E56; --teal-light: #E1F5EE; --teal-mid: #1D9E75;
+    --amber: #854F0B; --amber-light: #FAEEDA; --amber-mid: #EF9F27;
+    --text-dark: #2C2C2A; --text-mid: #5F5E5A; --text-light: #888780;
+    --bg: #F8FBF6; --white: #ffffff;
+  }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+  nav {
+    background: var(--white);
+    border-bottom: 1.5px solid #C0DD97;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--green-light);
+    border: 2px solid var(--green-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .logo-text { font-size: 17px; font-weight: 600; color: var(--green); }
+  .logo-sub { font-size: 11px; color: var(--text-mid); margin-top: -2px; }
+  .nav-links { display: flex; gap: 20px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-mid); text-decoration: none;
+    font-weight: 500; padding: 4px 8px; border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { background: var(--green-light); color: var(--green); }
+  .hero {
+    background: linear-gradient(135deg, #EAF3DE 0%, #E1F5EE 60%, #FAEEDA 100%);
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid #97C459;
+    font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: 36px; font-weight: 700;
+    color: var(--green);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 16px; color: var(--text-mid);
+    max-width: 540px; margin: 0 auto 28px;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green); color: white;
+    border: none; padding: 12px 28px;
+    border-radius: 8px; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--teal); }
+  .btn-secondary {
+    background: white; color: var(--green);
+    border: 2px solid var(--green-mid);
+    padding: 12px 28px; border-radius: 8px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--green-light); }
+  .hero-price {
+    margin-top: 24px;
+    background: white;
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 1.5px solid #C0DD97;
+    font-size: 14px; color: var(--text-mid);
+  }
+  .hero-price strong { color: var(--green); font-size: 18px; }
+  .section { padding: 52px 24px; }
+  .section-title { text-align: center; margin-bottom: 36px; }
+  .section-title h2 { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+  .section-title p { font-size: 14px; color: var(--text-mid); margin-top: 6px; }
+  .section-title .line {
+    width: 50px; height: 3px;
+    background: var(--green-mid);
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 900px; margin: 0 auto;
+  }
+  .feature-card {
+    background: white;
+    border: 1px solid #C0DD97;
+    border-radius: 12px;
+    padding: 22px 18px;
+    text-align: center;
+  }
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--green-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin: 0 auto 14px;
+  }
+  .feature-card h3 { font-size: 15px; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+  .feature-card p { font-size: 13px; color: var(--text-mid); }
+  .how-bg { background: #EAF3DE; }
+  .steps {
+    display: flex;
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .step { flex: 1; min-width: 180px; max-width: 220px; text-align: center; padding: 20px 14px; }
+  .step-num {
+    width: 44px; height: 44px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700;
+    margin: 0 auto 12px;
+  }
+  .step h3 { font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+  .step p { font-size: 12px; color: var(--text-mid); }
+  .pricing-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border: 2px solid var(--green-mid);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .pricing-head {
+    background: var(--green);
+    color: white;
+    padding: 24px;
+    text-align: center;
+  }
+  .pricing-head h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .pricing-head .price { font-size: 42px; font-weight: 800; }
+  .pricing-head .price-sub { font-size: 13px; opacity: 0.85; }
+  .pricing-body { padding: 24px; }
+  .pricing-row {
+    display: flex; justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #EAF3DE;
+    font-size: 14px;
+  }
+  .pricing-row:last-child { border-bottom: none; }
+  .pricing-row .label { color: var(--text-mid); }
+  .pricing-row .val { font-weight: 600; color: var(--text-dark); }
+  .profit-badge {
+    background: var(--teal-light);
+    color: var(--teal);
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 600;
+  }
+  .stp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .stp-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #C0DD97;
+    padding: 22px 18px;
+  }
+  .stp-label {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--green-mid);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .stp-card h3 { font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+  .stp-card p { font-size: 13px; color: var(--text-mid); }
+  .testimonials-bg { background: #E1F5EE; }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #9FE1CB;
+  }
+  .t-text { font-size: 14px; color: var(--text-dark); font-style: italic; margin-bottom: 14px; }
+  .t-author { display: flex; align-items: center; gap: 10px; }
+  .t-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+  .t-name { font-size: 13px; font-weight: 600; }
+  .t-role { font-size: 11px; color: var(--text-light); }
+  .stars { color: #EF9F27; font-size: 14px; margin-bottom: 10px; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 26px; }
+    .nav-links { display: none; }
+  }
+  .contact-info { padding: 20px 0; }
+  .contact-info h3 { font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 16px; }
+  .contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+  .c-icon {
+    width: 36px; height: 36px;
+    background: var(--green-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .c-text p { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+  .c-text span { font-size: 12px; color: var(--text-mid); }
+  .contact-form { background: white; border-radius: 12px; border: 1px solid #C0DD97; padding: 24px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--text-mid); display: block; margin-bottom: 5px; }
+  .form-group input, .form-group textarea {
+    width: 100%; border: 1px solid #D3D1C7; border-radius: 8px;
+    padding: 9px 12px; font-size: 14px;
+    font-family: inherit; color: var(--text-dark);
+    outline: none; transition: border 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--green-mid); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    width: 100%; background: var(--green); color: white;
+    border: none; padding: 11px;
+    border-radius: 8px; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--teal); }
+  footer {
+    background: #27500A;
+    color: #C0DD97;
+    padding: 36px 24px;
+    text-align: center;
+  }
+  footer .f-logo { font-size: 20px; font-weight: 700; color: white; margin-bottom: 8px; }
+  footer .f-tagline { font-size: 13px; color: #97C459; margin-bottom: 20px; }
+  footer .f-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+  footer .f-links a { color: #C0DD97; text-decoration: none; font-size: 13px; }
+  footer .f-links a:hover { color: white; }
+  footer .f-copy { font-size: 12px; color: #639922; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">🌿</div>
+    <div>
+      <div class="logo-text">QuitGum Pakistan</div>
+      <div class="logo-sub">Nicotine Gum — Quit Smoking</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#stp">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🇵🇰 CUSIT, Peshawar — Pakistan</div>
+  <h1>Quit Smoking.<br>Start Living.</h1>
+  <p>Nicotine gum that helps you break free from cigarette addiction. Safe, effective, and easy to use — now available in Pakistan.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#pricing">Buy Now — Rs. 5,000</a>
+    <a class="btn-secondary" href="#how">How Does It Work?</a>
+  </div>
+  <div class="hero-price">
+    1 Box = <strong>Rs. 5,000</strong> &nbsp;|&nbsp; 7 Packs &nbsp;|&nbsp; Per Pack = Rs. 800
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-title">
+    <h2>Product Features</h2>
+    <p>Everything you need to quit smoking for good</p>
+    <div class="line"></div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">💊</div>
+      <h3>Controlled Nicotine</h3>
+      <p>Safe dose that reduces cravings without harmful chemicals found in cigarettes</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <h3>Instant Relief</h3>
+      <p>Use the gum whenever a cigarette craving hits — fast-acting formula</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👝</div>
+      <h3>Portable & Easy</h3>
+      <p>Compact size — carry it anywhere, use it anytime, no hassle</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📉</div>
+      <h3>Gradual Reduction</h3>
+      <p>Slowly reduces nicotine dependence over time at your own pace</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <h3>Healthy Lifestyle</h3>
+      <p>Your first step toward a healthier, smoke-free life</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <h3>Clinically Proven</h3>
+      <p>Nicotine replacement therapy — tested and trusted worldwide</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-bg" id="how">
+  <div class="section-title">
+    <h2>How It Works</h2>
+    <p>5 simple steps to becoming smoke-free</p>
+    <div class="line"></div>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Feel the Craving</h3>
+      <p>When the urge to smoke hits, resist the cigarette</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Chew the Gum</h3>
+      <p>Chew QuitGum — nicotine is absorbed into your body</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Craving Reduces</h3>
+      <p>Withdrawal symptoms like anxiety and irritability fade away</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Use Less Over Time</h3>
+      <p>Reduce gum usage each week as cravings get weaker</p>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <h3>Smoke-Free Life</h3>
+      <p>Break free from cigarettes permanently — stay healthy</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-title">
+    <h2>Pricing</h2>
+    <p>Affordable and accessible for everyone</p>
+    <div class="line"></div>
+  </div>
+  <div class="pricing-card">
+    <div class="pricing-head">
+      <h3>QuitGum Starter Box</h3>
+      <div class="price">Rs. 5,000</div>
+      <div class="price-sub">1 Box — 7 Packs — Complete Treatment Pack</div>
+    </div>
+    <div class="pricing-body">
+      <div class="pricing-row">
+        <span class="label">Box Contents</span>
+        <span class="val">7 Packs</span>
+      </div>
+      <div class="pricing-row">
+        <span class="label">Per Pack Price</span>
+        <span class="val">Rs. 800</span>
+      </div>
+      <div class="pricing-row">
+        <span class="label">Profit Margin (per pack)</span>
+        <span class="val"><span class="profit-badge">Rs. 80 profit</span></span>
+      </div>
+      <div class="pricing-row">
+        <span class="label">Currently Available At</span>
+        <span class="val">CUSIT, Peshawar</span>
+      </div>
+      <div class="pricing-row">
+        <span class="label">Coming Soon</span>
+        <span class="val">Pharmacies & Online</span>
+      </div>
+      <div style="margin-top:16px;">
+        <a class="btn-primary" href="#contact" style="width:100%; padding:13px; text-align:center; display:block;">Order Now — Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STP ANALYSIS -->
+<section class="section" style="background:#F8FBF6;" id="stp">
+  <div class="section-title">
+    <h2>Who Is This For?</h2>
+    <p>Our target audience and market positioning</p>
+    <div class="line"></div>
+  </div>
+  <div class="stp-grid">
+    <div class="stp-card">
+      <div class="stp-label">🎯 Segmentation</div>
+      <h3>Who We Serve</h3>
+      <p>Smoking addicts, young adults, university students, and people who want to quit — especially in CUSIT and Peshawar</p>
+    </div>
+    <div class="stp-card">
+      <div class="stp-label">📍 Targeting</div>
+      <h3>Primary Target</h3>
+      <p>Smokers who want to quit and young people at risk of addiction — ages 18 to 35</p>
+    </div>
+    <div class="stp-card">
+      <div class="stp-label">💡 Positioning</div>
+      <h3>Our Mission</h3>
+      <p>A safer, healthier alternative to cigarettes — helping people quit addiction step by step</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-bg">
+  <div class="section-title">
+    <h2>Customer Reviews</h2>
+    <p>What our users are saying</p>
+    <div class="line"></div>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"I had been smoking for 5 years. QuitGum helped me quit within 3 months. Highly recommend to everyone trying to stop!"</p>
+      <div class="t-author">
+        <div class="t-avatar">AK</div>
+        <div>
+          <div class="t-name">Ahmad Khan</div>
+          <div class="t-role">CUSIT Student, Peshawar</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"Very effective product. Whenever I felt a craving, I used the gum and instantly felt better. It really works!"</p>
+      <div class="t-author">
+        <div class="t-avatar">ZA</div>
+        <div>
+          <div class="t-name">Zubair Afridi</div>
+          <div class="t-role">Working Professional, Peshawar</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★☆</div>
+      <p class="t-text">"Price seems a bit high but the quality and effect are excellent. Bought it for my family and everyone benefited."</p>
+      <div class="t-author">
+        <div class="t-avatar">SM</div>
+        <div>
+          <div class="t-name">Salman Mohmand</div>
+          <div class="t-role">Teacher, Hayatabad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH WARNING -->
+<section class="section" style="background: #FAEEDA; padding: 28px 24px;">
+  <div style="max-width:700px; margin:0 auto; text-align:center;">
+    <div style="font-size:28px; margin-bottom:8px;">⚠️</div>
+    <h3 style="font-size:16px; color:#854F0B; margin-bottom:8px;">Health Awareness</h3>
+    <p style="font-size:13px; color:#633806;">Smoking causes lung cancer, heart disease, and serious health problems. QuitGum can help you quit — but always consult a doctor before starting any treatment. Quitting smoking is essential for you and your family's health.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-title">
+    <h2>Contact & Order</h2>
+    <p>Get in touch to place your order or ask any questions</p>
+    <div class="line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Get In Touch</h3>
+      <div class="contact-item">
+        <div class="c-icon">📍</div>
+        <div class="c-text">
+          <p>City University of Science & IT</p>
+          <span>CUSIT, Peshawar, KPK, Pakistan</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📱</div>
+        <div class="c-text">
+          <p>WhatsApp / Call</p>
+          <span>+92 XXX XXXXXXX</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📧</div>
+        <div class="c-text">
+          <p>Email</p>
+          <span>quitgum.pk@gmail.com</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📣</div>
+        <div class="c-text">
+          <p>Social Media</p>
+          <span>#QuitSmoking #QuitGumPK</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Ali Hassan">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+92 300 0000000">
+      </div>
+      <div class="form-group">
+        <label>Your Message or Order</label>
+        <textarea placeholder="e.g. I would like to order 2 boxes, or I have a question about..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you! Your message has been received. We will contact you shortly.')">Send Message 📩</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">🌿 QuitGum Pakistan</div>
+  <div class="f-tagline">A Healthier Pakistan — One Gum at a Time</div>
+  <div class="f-links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#stp">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="f-copy">© 2025 QuitGum Pakistan — CUSIT Peshawar | MVP Product</div>
+</footer>
+
+</body>
+</html>
